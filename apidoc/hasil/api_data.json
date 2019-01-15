@@ -1,0 +1,187 @@
+[
+  {
+    "type": "post",
+    "url": "https://niko.com/api/user",
+    "title": "Create a new User",
+    "name": "PostUser",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "access-key",
+            "description": "<p>Users unique access-key.</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>In this case &quot;apiUse&quot; is defined and used. Define blocks with params that will be used in several functions, so you dont have to rewrite them.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the User.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The new Users-ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "source/code1.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "https://niko.com/api/user",
+    "title": "Create a new User",
+    "name": "PostUser2",
+    "group": "User",
+    "description": "<p>In this case &quot;apiUse&quot; is defined and used. Define blocks with params that will be used in several functions, so you dont have to rewrite them.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the User.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The new Users-ID.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "source/code2.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "https://niko.com/api/read_user",
+    "title": "Zet list of User",
+    "name": "GetReadUser",
+    "group": "User_Admin",
+    "description": "<p>In this case &quot;apiUse&quot; is defined and used. Define blocks with params that will be used in several functions, so you dont have to rewrite them.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the User.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The new Users-ID.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TakAda",
+            "description": "<p>IDCoba Penjelasankah ini</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "source/code1.js",
+    "groupTitle": "User_Admin"
+  },
+  {
+    "type": "get",
+    "url": "https://niko.com/api/read_user",
+    "title": "Get list of User",
+    "name": "GetReadUser2",
+    "group": "User_Admin",
+    "description": "<p>In this case &quot;apiUse&quot; is defined and used. Define blocks with params that will be used in several functions, so you dont have to rewrite them.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the User.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The new Users-ID.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "TakAda",
+            "description": "<p>IDCoba Penjelasankah ini</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "source/code2.js",
+    "groupTitle": "User_Admin"
+  }
+]
