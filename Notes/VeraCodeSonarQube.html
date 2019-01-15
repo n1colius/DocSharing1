@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NikoDocs - Sharing Session VeraCode & SonarQube</title>
+
+<style type='text/css' media='all'>@import url('userguide.css');</style>
+<link rel='stylesheet' type='text/css' media='all' href='userguide.css' />
+
+<script type="text/javascript" src="nav/nav.js"></script>
+<script type="text/javascript" src="nav/prototype.lite.js"></script>
+<script type="text/javascript" src="nav/moo.fx.js"></script>
+<script type="text/javascript" src="nav/user_guide_menu.js"></script>
+
+<meta http-equiv='expires' content='-1' />
+<meta http-equiv= 'pragma' content='no-cache' />
+<meta name='robots' content='all' />
+
+<link rel="stylesheet" href="lib/default.min.css">
+<script src="lib/highlight.min.js"></script>
+<!-- <pre><code class="console">https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html</code></pre> -->
+
+</head>
+<body>
+<br>
+
+<!-- START NAVIGATION -->
+<div id="masthead">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td><h1>Sharing Session VeraCode & SonarQube</h1></td>
+<td id="breadcrumb_right"></td>
+</tr>
+</table>
+</div>
+<!-- END NAVIGATION -->
+
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+<tr>
+<td id="breadcrumb">
+    Author &nbsp;&#8250;&nbsp; Nikolius Lau (n1colius.lau@gmail.com)
+</td>
+<td id="searchbox">&nbsp;</td>
+</tr>
+</table>
+
+<!-- START CONTENT -->
+<div id="content">
+<p>
+    Dokumen ini adalah untuk menjelaskan poin2 yg perlu diperhatikan ketika koding di Project Koltiva baik terkait di file .php .js dan juga .css<br>
+    Dengan adanya poin2 dibawah diharapkan bisa menghindari terdeteksi flaw oleh kedua source code checker ini.
+</p><br>
+
+<h2>1. Declare aturan yg sama (CSS)</h2>
+<p>Jangan mendeclare aturan yg sama di satu class yg sama</p>
+<pre><code class="javascript">
+.ClassMumet {
+    height:100%;
+    width:100%;
+    ...
+    ...
+    ...
+    height:300px;
+}
+</code></pre>
+
+<h2>2. Script debug (JS)</h2>
+<p>Jangan menyisakan script2 untuk keperluan debug di production</p>
+<pre><code class="javascript">
+console.log('Hapus saya please');
+alert('Coba wae lihat muncul tidak');
+</code></pre>
+
+<h2>3. Fungsi eval (JS)</h2>
+<p>Sebaiknya dan jangan dianjurkan untuk tidak memakai fungsi eval karena jadi soal ancaman security</p>
+<pre><code class="javascript">
+eval('x = 42');
+</code></pre>
+
+<h2>4. Declare nilai atau config yg sama di satu object (JS)</h2>
+<pre><code class="javascript">
+xtype: 'textfield',
+id: 'Koltiva.view.Farmer.MainForm-FormBasicData-PhotoOld',
+name: 'Koltiva.view.Farmer.MainForm-FormBasicData-PhotoOld',
+hidden: true,
+inputType: 'hidden',
+hidden: true
+</code></pre>
+
+<h2>5. Jangan melakukan pengecekan yang tidak ada artinya (JS dan PHP)</h2>
+<pre><code class="javascript">
+if(true){
+    //Coding apalah disini
+}
+
+
+/*=======================*/
+
+
+var x = 11;
+if(x == 11){
+    //Podo wae, ngapain pakai if
+}
+</code></pre>
+
+
+<h2>6. Jangan kasih nama variable yg bernama "password" (JS dan PHP)</h2>
+<pre><code class="javascript">
+var password = 'no no no';
+var PassWord = 'jangan ya';
+var passwd = 'dibilangin jangan';
+</code></pre>
+
+<h2>7. Variabel wajib didefine terlebih dahulu (JS dan PHP)</h2>
+<pre><code class="php">
+function AntahBerantah(){
+    if($VarAdaGakYa == "2"){
+
+    }
+
+    $VarHasilJumlah = $VarGhoib + 2;
+}
+</code></pre>
+
+<h2>8. Ketika mau melakukan operasi matematika, variabel wajib dicast dl ke tipe numeric (JS dan PHP)</h2>
+<pre><code class="javascript">
+var a = parseInt(Ext.getCmp('TextBerisiAngka').getValue());
+var b = parseFloat(Ext.getCmp('TextBerisiAngkaDecimal').getValue());
+var c;
+c = a+b;
+</code></pre>
+<pre><code class="php">
+function CobaBerhitung($a,$b){
+    $a = (int) $a;
+    $b = (float) $b;
+    $c = null;
+
+    $c = $a + $b;
+}
+</code></pre>
+
+<h2>9. Jangan memakai fungsi enkrip md5 lagi (PHP)</h2>
+<p>Sebagai acuan di CT menggunakan fungsi hash_pbkdf2</p>
+<pre><code class="php">
+//hash_pbkdf2(param_hash,string_yg_mau_dihash,string_salt,iterations,length);
+echo hash_pbkdf2('sha512','StringYgMauDiHash','STRING_HASH',10,32);
+</code></pre>
+
+<h2>10. Fungsi2 file operation dari PHP tidak boleh langsung digunakan, tapi harus melalui perantara fungsi (PHP)</h2>
+<pre><code class="php">
+if (! function_exists('delete_file'))
+{
+    function delete_file($file = '')
+    {
+        // TODO : check file = is_file, allowed, etc ...
+        if (is_file($file)) {
+            return unlink($file);
+        }
+    }
+}
+
+if (! function_exists('make_directory'))
+{
+    function make_directory($pathint, $mode = 0777 , $recursive = FALSE)
+    {
+        // TODO : check, auth etc
+        return mkdir($pathint, $mode, $recursive);
+    }
+}
+
+if (! function_exists('rename_file'))
+{
+    function rename_file($oldname, $newname)
+    {
+        // TODO : check, auth etc
+        return rename($oldname, $newname);
+    }
+}
+
+if (! function_exists('copy_file'))
+{
+    function copy_file($source, $dest)
+    {
+        // TODO : check, auth etc
+        return copy($source, $dest);
+    }
+}
+
+if (! function_exists('my_move_uploaded_file'))
+{
+    function my_move_uploaded_file($filename, $dest)
+    {
+        // TODO : check, auth etc
+        return move_uploaded_file($filename, $dest);
+    }
+}
+
+if (! function_exists('remove_directory'))
+{
+    function remove_directory($dirpath)
+    {
+        // TODO : check, auth etc
+        if (is_dir($dirpath)) {
+            rmdir($dirpath);
+        }
+    }
+}
+</code></pre>
+
+<h2>11. Code Formatting</h2>
+<p>
+    <ul>
+        <li>Dimohon dengan sangat menggunakan "indent using tab" dan tabsize nya adalah 4, berlaku juga untuk penulisan query2 apalagi query yg panjang sekali</li>
+        <li>Mohon untuk setiap file yg pernah di edit baik css, js, maupun php alangkah baiknya di format dl menggunakan fitur dari vs code "Format Document" (Ctrl+Shift+i)</li>
+    </ul>
+</p>
+
+
+
+</div>
+<!-- END CONTENT -->
+
+
+<div id="footer">
+<p><a href="#top">Top of Page</a></p>
+<p>&nbsp;&middot;&nbsp; Copyright &#169; Selama saya masih hidup &nbsp;&middot;&nbsp;</p>
+</div>
+
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
