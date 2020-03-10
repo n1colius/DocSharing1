@@ -35,4 +35,10 @@ __7. Cross-Site Scripting XSS__
 __8. Insecure Deserialization__  
 * Pastikan ketika request2 ke API, parameter yang masuk harus di verifikasi dengan benar, sehingga API tidak mengeluarkan data yang tidak seharusnya, misalnya API untuk ambil data user, param userid yang harusnya 1 (user dia sendiri) diganti dengan dengan id lain jadi 3 misalnya, sehingga data yang muncul adalah data user 3 bukan user 1  
 
+__9. Using Components with Known Vulnerabilities__  
+* Pastikan library third party yg digunakan itu tidak memiliki vulnerabilities yang akan bisa dimanfaatkan untuk menjadi celah untuk masuk ke dalam sistem.  
 
+__10. Insufficient Logging & Monitoring__  
+* Jika tidak ada logging dan monitoring yang cukup, maka kita akan susah tau keadaan aplikasi yang berjalan, sehingga kemungkinan besar yang akan ketemu masalah duluan adalah user pemakai aplikasi nya, bukan kita.  
+* Pastikan ada monitoring tools untuk monitor apakah aplikasi dan DB berjalan sebagaimana mestinya
+* Pastikan juga aplikasi bisa log untuk kejadian2 yg mungkin akan terjadi diluar flow, sehingga jika ada problem akan lebih mudah trace dari log2 tersebut.
