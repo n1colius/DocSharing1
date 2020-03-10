@@ -27,4 +27,12 @@ __5. Broken Access Control__
 * Hak akses user harus benar2 diperhatikan, jika user tidak bisa mengupdate data, harus dipastikan dia tidak bisa mengupdate, jangan sampai ada celah  
 
 __6. Security Misconfiguration__  
+* Ini bagian si edow  
+
+__7. Cross-Site Scripting XSS__  
+* Inputan/parameter yg masuk harus bener2 dicek agar tidak mengandung tag html yang bisa memanggil js dari website/domain lainnya yg tidak dikenal  
+
+__8. Insecure Deserialization__  
+* Pastikan ketika request2 ke API, parameter yang masuk harus di verifikasi dengan benar, sehingga API tidak mengeluarkan data yang tidak seharusnya, misalnya API untuk ambil data user, param userid yang harusnya 1 (user dia sendiri) diganti dengan dengan id lain jadi 3 misalnya, sehingga data yang muncul adalah data user 3 bukan user 1  
+
 
